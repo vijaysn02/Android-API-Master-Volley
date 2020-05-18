@@ -1,4 +1,4 @@
- package com.vijaysn.apimastervolley
+ package com.vijaysn.apimastervolley.Activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.Toast
 import com.vijaysn.apimastervolley.Handlers.ServiceInteraction
 import com.vijaysn.apimastervolley.Handlers.ServiceInteractionListener
+import com.vijaysn.apimastervolley.R
 import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONObject
 
