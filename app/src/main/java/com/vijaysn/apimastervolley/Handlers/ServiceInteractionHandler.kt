@@ -54,7 +54,7 @@ class ServiceInteraction {
             }
         }
 
-        fun postAPICall(url: String,foregroundAPICall: Boolean, context: Context, requestBody: JSONObject, listener: ServiceInteractionListener) {
+        fun postAPICall(url: String,foregroundAPICall: Boolean, context: Context, requestBody: String, listener: ServiceInteractionListener) {
             try {
 
                 if (foregroundAPICall) {
@@ -97,8 +97,7 @@ class ServiceInteraction {
 
                     override fun getBody(): ByteArray? {
                         try {
-                            val requestBodyString = requestBody.toString()
-                            return requestBodyString.toByteArray(charset("utf-8"))
+                            return requestBody.toByteArray(charset("utf-8"))
                         } catch (e: UnsupportedEncodingException) {
                             Log.d("APIHandlerVolley", e.toString())
                             return null
@@ -111,7 +110,7 @@ class ServiceInteraction {
             }
         }
 
-        fun putAPICall(url: String,foregroundAPICall: Boolean, context: Context, requestBody: JSONObject, listener: ServiceInteractionListener) {
+        fun putAPICall(url: String,foregroundAPICall: Boolean, context: Context, requestBody: String, listener: ServiceInteractionListener) {
             try {
 
 
@@ -152,8 +151,7 @@ class ServiceInteraction {
 
                     override fun getBody(): ByteArray? {
                         try {
-                            val requestBodyString = requestBody.toString()
-                            return requestBodyString.toByteArray(charset("utf-8"))
+                            return requestBody.toByteArray(charset("utf-8"))
                         } catch (e: UnsupportedEncodingException) {
                             Log.d("APIHandlerVolley", e.toString())
                             return null
@@ -166,7 +164,7 @@ class ServiceInteraction {
             }
         }
 
-        fun deleteAPICall(url: String,foregroundAPICall: Boolean, context: Context, requestBody: JSONObject, listener: ServiceInteractionListener) {
+        fun deleteAPICall(url: String,foregroundAPICall: Boolean, context: Context, requestBody: String, listener: ServiceInteractionListener) {
             try {
 
 
@@ -207,8 +205,7 @@ class ServiceInteraction {
 
                     override fun getBody(): ByteArray? {
                         try {
-                            val requestBodyString = requestBody.toString()
-                            return requestBodyString.toByteArray(charset("utf-8"))
+                            return requestBody.toByteArray(charset("utf-8"))
                         } catch (e: UnsupportedEncodingException) {
                             Log.d("APIHandlerVolley", e.toString())
                             return null

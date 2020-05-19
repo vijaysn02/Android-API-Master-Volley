@@ -7,6 +7,7 @@ import android.widget.Toast
 import com.vijaysn.apimastervolley.Activities.Model.GetResponse
 import com.vijaysn.apimastervolley.Activities.Model.PostResponse
 import com.vijaysn.apimastervolley.Activities.Model.PutResponse
+import com.vijaysn.apimastervolley.Activities.Model.UserRequest
 import com.vijaysn.apimastervolley.Handlers.ServiceInteraction
 import com.vijaysn.apimastervolley.Handlers.ServiceInteractionListener
 import com.vijaysn.apimastervolley.R
@@ -75,8 +76,10 @@ import org.json.JSONObject
 
      //region Post API Call
      fun postAPICall() {
-         val jsonRequestObject = JSONObject()
-         jsonRequestObject.put("Model","Rajesh")
+
+         val userRequest = UserRequest("Rajesh","Model")
+         val jsonRequestObject = userRequest.toJson()
+
          try {
              ServiceInteraction.postAPICall(API_URL,false, this, jsonRequestObject, object : ServiceInteractionListener {
                  override fun onError(message: String) {
@@ -108,8 +111,10 @@ import org.json.JSONObject
 
      //region Put API Call
      fun putAPICall() {
-         val jsonRequestObject = JSONObject()
-         jsonRequestObject.put("Model","Rajesh")
+
+         val userRequest = UserRequest("Rajesh","Model")
+         val jsonRequestObject = userRequest.toJson()
+
          try {
              ServiceInteraction.putAPICall(API_URL,true, this, jsonRequestObject, object : ServiceInteractionListener {
                  override fun onError(message: String) {
@@ -141,8 +146,10 @@ import org.json.JSONObject
 
      //region Delete API Call
      fun deleteAPICall() {
-         val jsonRequestObject = JSONObject()
-         jsonRequestObject.put("Model","Rajesh")
+
+         val userRequest = UserRequest("Rajesh","Model")
+         val jsonRequestObject = userRequest.toJson()
+
          try {
              ServiceInteraction.deleteAPICall(API_URL,true, this, jsonRequestObject, object : ServiceInteractionListener {
                  override fun onError(message: String) {
