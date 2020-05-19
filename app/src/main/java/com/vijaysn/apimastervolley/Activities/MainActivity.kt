@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import com.vijaysn.apimastervolley.Activities.Model.GetResponse
+import com.vijaysn.apimastervolley.Activities.Model.PostResponse
+import com.vijaysn.apimastervolley.Activities.Model.PutResponse
 import com.vijaysn.apimastervolley.Handlers.ServiceInteraction
 import com.vijaysn.apimastervolley.Handlers.ServiceInteractionListener
 import com.vijaysn.apimastervolley.R
@@ -44,7 +47,7 @@ import org.json.JSONObject
          try {
              ServiceInteraction.getAPICall(API_URL,true,this, object : ServiceInteractionListener {
                  override fun onError(message: String) {
-                     Log.d("Get-Call",message)
+                     Log.d("Get-Error",message)
                  }
 
                  override fun onResponse(response: JSONObject) {
@@ -52,17 +55,22 @@ import org.json.JSONObject
                  }
              })
          } catch (e: Exception) {
-             Log.d("Get-Call", e.toString())
+             Log.d("Get-Exception", e.toString())
          }
      }
-     fun handleGetResponse(response: JSONObject) {
-         //processGetResponse(response)
-         Log.d("Get-Call",response.toString())
-         Toast.makeText(this,"Successful-Get Call",Toast.LENGTH_SHORT).show()
+     fun handleGetResponse(response:JSONObject) {
+         try {
+             val getResponse = GetResponse.fromJson(response.toString())
+             processGetResponse(response = getResponse)
+         } catch(e: Exception) {
+             Log.d("Get-Parse-Exception",e.toString())
+         }
      }
-     //fun processGetResponse(response:GetResponse) {
-     //
-     //}
+     fun processGetResponse(response:GetResponse?) {
+         if (response != null) {
+             Toast.makeText(this,"Successful - Get",Toast.LENGTH_SHORT).show()
+         }
+     }
      //endregion
 
      //region Post API Call
@@ -72,7 +80,7 @@ import org.json.JSONObject
          try {
              ServiceInteraction.postAPICall(API_URL,false, this, jsonRequestObject, object : ServiceInteractionListener {
                  override fun onError(message: String) {
-                     Log.d("Post-Call", message)
+                     Log.d("Post-Error", message)
                  }
 
                  override fun onResponse(response: JSONObject) {
@@ -80,17 +88,22 @@ import org.json.JSONObject
                  }
              })
          } catch (e: Exception) {
-             Log.d("Put-Call", e.toString())
+             Log.d("Post-Exception", e.toString())
          }
      }
-     fun handlePostResponse(response: JSONObject) {
-         //processPostResponse(response)
-         Log.d("Post-Call",response.toString())
-         Toast.makeText(this,"Successful-Post Call",Toast.LENGTH_SHORT).show()
+     fun handlePostResponse(response:JSONObject) {
+         try {
+             val loginResponse = PostResponse.fromJson(response.toString())
+             processPostResponse(response = loginResponse)
+         } catch(e: Exception) {
+             Log.d("Post-Parse-Exception",e.toString())
+         }
      }
-     //fun processPostResponse(response:GetResponse) {
-     //
-     //}
+     fun processPostResponse(response:PostResponse?) {
+         if (response != null) {
+             Toast.makeText(this,"Successful - Post",Toast.LENGTH_SHORT).show()
+         }
+     }
      //endregion
 
      //region Put API Call
@@ -98,9 +111,9 @@ import org.json.JSONObject
          val jsonRequestObject = JSONObject()
          jsonRequestObject.put("Model","Rajesh")
          try {
-             ServiceInteraction.putAPICall(API_URL,false, this, jsonRequestObject, object : ServiceInteractionListener {
+             ServiceInteraction.putAPICall(API_URL,true, this, jsonRequestObject, object : ServiceInteractionListener {
                  override fun onError(message: String) {
-                     Log.d("Put-Call", message)
+                     Log.d("Put-Error", message)
                  }
 
                  override fun onResponse(response: JSONObject) {
@@ -108,16 +121,22 @@ import org.json.JSONObject
                  }
              })
          } catch (e: Exception) {
-             Log.d("Put-Call", e.toString())
+             Log.d("Put-Exception", e.toString())
          }
      }
-     fun handlePutResponse(response: JSONObject) {
-         //processGetResponse(response)
-         Toast.makeText(this,"Successful-Put Call",Toast.LENGTH_SHORT).show()
+     fun handlePutResponse(response:JSONObject) {
+         try {
+             val putResponse = PutResponse.fromJson(response.toString())
+             processPutResponse(response = putResponse)
+         } catch(e: Exception) {
+             Log.d("Put-Parse-Exception",e.toString())
+         }
      }
-     //fun processGetResponse(response:GetResponse) {
-     //
-     //}
+     fun processPutResponse(response:PutResponse?) {
+         if (response != null) {
+             Toast.makeText(this,"Successful - Put",Toast.LENGTH_SHORT).show()
+         }
+     }
      //endregion
 
      //region Delete API Call
